@@ -1,0 +1,18 @@
+structure of the src of the project
+=====================================
+the creator tried to keep it simple and similar to the linux kernel:
+in details:
+the .h files are in the same place as their .c variant does,
+but if the .h file does not have a .c variant then place them in include/
+
+all the assets for GUI, including images, audios and other stuff are placed
+inside of EntropyOS/gui/assets/
+
+the main file of the whole OS is the file that acts as a kernel, located at
+EntropyOS/init/
+others from EntropyOS/kernel/ acts as some kind of helpers or implementations
+of something that has to do with the kernel, not drivers, but with the kernel
+
+for compilation, is needed a WSL/Linux system, run "make toolchain" in the
+terminal from the root of the project for the toolchain to be installed on your
+machine
