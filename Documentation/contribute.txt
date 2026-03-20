@@ -1,0 +1,12 @@
+contributor guide
+=================================
+method used here is pull request (PR) inside of the official github repository
+of EntropyOS.
+there are 3 branches: main, testing, development.
+first 20 days is some kind of vacantion.
+after these 20 days, the next 15 days is the development time, write your code,
+test it on your hardware/emulators/VMs, and then pull request.
+the next 5 days, from development branch, the project goes to testing branch,
+this is where the EntropyOS creator tests it, and some of you can also test it
+and send PRs fixing them (NOT NEW FEATURES), after these 5 days, it goes
+from testing branch to main branch, and the cycle restarts.
