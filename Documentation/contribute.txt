@@ -10,3 +10,8 @@ the next 5 days, from development branch, the project goes to testing branch,
 this is where the EntropyOS creator tests it, and some of you can also test it
 and send PRs fixing them (NOT NEW FEATURES), after these 5 days, it goes
 from testing branch to main branch, and the cycle restarts.
+
+also one thing, if you create a new file, make sure on top of it there's a
+GPLv2 legal warning (dont copy from other websites, copy from other files from here
+because it states GPLv2, not GPLv2-or-later)
+if edited an existing file, add your (C) under the last existing (C)
