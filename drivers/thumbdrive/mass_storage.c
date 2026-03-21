@@ -1,16 +1,26 @@
-/* SPDX-License-Identifier: GPL-2.0 */
+/*
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 #include "mass_storage.h"
 #include "../../drivers/usb/usb_host.h"
 #include "../../kernel/console.h"
 #include "debug_serial.h"
 #include <stdint.h>
 #include <string.h>
-
-/* USB Mass Storage Bulk-Only Transport (BOT) skeleton.
- * This code provides a small block-device API implemented on top of
- * abstract `usb_host_*` functions. The low-level xHCI transfer logic
- * should be implemented in `drivers/usb/usb_host_xhci.c` later.
- */
 
 struct __attribute__((packed)) cbw {
     uint32_t signature;

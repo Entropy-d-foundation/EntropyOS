@@ -1,22 +1,20 @@
-/* SPDX-License-Identifier: GPL-2.0 */
 /*
- * EntropyOS/fs/fat32/fat32.c
- *
- * FAT32 filesystem driver
- *
- * Copyright (C) 2026 Gabriel Sîrbu
- *
- * Fixes applied:
- *  - fat32_get_next_cluster / fat32_set_next_cluster: wrong FAT entry index math fixed
- *  - fat32_find_entry: now walks full cluster chain (multi-cluster directories)
- *  - fat32_write_file_in: now walks full cluster chain for dir scan + flushes after write
- *  - fat32_create_directory_in: now walks full cluster chain for dir scan + flushes after write
- *  - fat32_list_files: now walks full cluster chain
- *  - fat32_format: removed duplicate/dead #ifdef __UEFI__ flush block, fixed delay value
- *  - fat32_delete_file / fat32_delete_directory_in: now walk full cluster chain
- *  - fat32_get_file_size_in: now walks full cluster chain
- *  - fat32_read_file / fat32_read_file_in: already correct, left as-is
- */
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 
 #include "../../drivers/block/block.h"
 #include "../../drivers/sata/sata.h"

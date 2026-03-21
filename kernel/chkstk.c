@@ -1,23 +1,22 @@
-/* A universal stub for the Microsoft-style stack check helper.
- *
- * Certain compilers (GCC targeting MinGW/Windows or clang when
- * emitting MSVC-compatible code) will automatically insert a call to
- * `__chkstk_ms` (and rarely `___chkstk_ms`) at the start of functions
- * which allocate large amounts of stack space.  When building a freestanding
- * kernel/UEFI binary we obviously do not provide the actual runtime
- * support, but the mere reference will cause the linker to fail if the
- * symbol is missing.
- *
- * Historically the project contained a dummy definition in
- * `gui/fonts.c`, which is only compiled into the main iso/BOOT.EFI image.
- * Other binaries (installer, bootloader) pulled in dependencies such as
- * `fs/exfat/exfat.c` which could trigger the same reference and thus
- * resulted in unpredictable linker errors.
- *
- * To make the behaviour consistent we provide a single source that is
- * added to every link line and therefore guarantees the symbol is
- * available regardless of which subset of sources are being linked.
- */
+/*
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
+
+/* somethimes, MINGW and its linker shows caprices if those are not present somewhere*/
 
 /* Canonical name expected by the toolchains. */
 void __chkstk_ms(void) { }

@@ -1,31 +1,20 @@
-/* SPDX-License-Identifier: GPL-2.0 */
 /*
- * EntropyOS cooperative scheduler
- *
- * Respects the original scheduler.h contract exactly:
- *   int  scheduler_add_task(fn, arg)
- *   void scheduler_remove_task(int id)
- *   void scheduler_run_once(double dt)
- *   void scheduler_run_all(double dt)
- *   void scheduler_run_loop(void)
- *   SCHEDULER_MAX_TASKS = 16
- *
- * Improvements (all internal, zero API changes):
- *  1. Priority bands (CRITICAL > HIGH > NORMAL > LOW):
- *       scheduler_run_all() runs higher-priority tasks first each frame.
- *       Set via scheduler_set_priority(id, prio) — not in .h but callable
- *       from .c files that include this directly or cast the int.
- *  2. Task states (READY / SLEEPING / SUSPENDED):
- *       scheduler_suspend(id) / scheduler_resume(id) pause without removing.
- *       scheduler_sleep(id, seconds) auto-wakes after N seconds of dt.
- *  3. Named tasks (internal, for debug serial prints).
- *  4. Per-task run_count + total_time_s statistics.
- *  5. scheduler_remove_by_fn(fn) — remove all slots matching a fn pointer.
- *  6. scheduler_run_once() fixed: advances next_index only when a task
- *     actually ran — prevents starvation in sparse tables.
- *  7. Duplicate detection: same fn+arg returns existing id instead of
- *     adding a second slot.
- */
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 
 #include "scheduler.h"
 #include <stddef.h>

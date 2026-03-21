@@ -1,26 +1,32 @@
-/* SPDX-License-Identifier: GPL-3.0 */
+/*
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 #ifndef USB_HOST_H
 #define USB_HOST_H
 
 #include <stdint.h>
 
-/* Abstract USB host helper API. These functions are intentionally minimal
- * and implemented as stubs for xHCI in `drivers/usb/usb_host_xhci.c`.
- * Implement the xHCI transfer handling later; the mass-storage driver
- * will call these functions.
- */
-
 int usb_host_init(void);
 
-/* Find the first Mass Storage interface and return the bulk IN/OUT
- * endpoint addresses and the interface number. Returns 0 on success.
- */
 int usb_host_find_mass_storage(uint8_t *out_ep_in, uint8_t *out_ep_out, uint8_t *out_interface);
 
 int usb_host_bulk_out(uint8_t ep, const void *buf, uint32_t len, uint32_t *actual);
 int usb_host_bulk_in(uint8_t ep, void *buf, uint32_t len, uint32_t *actual);
 
-/* Returns non-zero if a USB host controller (xHCI) was initialized. */
 int usb_host_is_present(void);
 
 #endif /* USB_HOST_H */

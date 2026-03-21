@@ -1,13 +1,24 @@
-/* SPDX-License-Identifier: GPL-3.0 */
+/*
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 #ifndef MASS_STORAGE_H
 #define MASS_STORAGE_H
 
 #include <stdint.h>
-
-/* Minimal USB Mass Storage (Bulk-Only Transport) block device API.
- * This file provides a small block-device style interface that depends
- * on a lower-level USB transfer layer (provided separately).
- */
 
 int ms_init(void);
 int ms_is_present(void);

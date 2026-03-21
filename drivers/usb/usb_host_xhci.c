@@ -1,26 +1,29 @@
-/* SPDX-License-Identifier: GPL-2.0 */
+/*
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 #include "../../drivers/usb/usb_host.h"
 #include "xhci.h"
 #include "../../kernel/console.h"
 #include <stdint.h>
 
-/* Minimal xHCI-backed USB host wrapper stubs.
- * NOTE: Implementing a full USB host transfer layer on top of xHCI is
- * non-trivial and out-of-scope for this change. These functions are
- * placeholders so the mass-storage driver compiles and exposes the
- * block device API. You will need to implement proper xHCI transfer
- * submission, TRB management and completion handling here.
- */
-
 static int g_usb_present = 0;
 
 int usb_host_init(void)
 {
-    /* Try a fuller initialization first; if it fails, fall back to the
-     * lightweight init path. If neither path initializes a controller,
-     * report absence but return success so callers can continue without
-     * treating this as a fatal build/runtime error. Use `usb_host_is_present()`
-     * to detect presence. */
     if (xhci_init_full() == 0) {
         text("usb_host: xhci init OK (full)\n");
         g_usb_present = 1;
@@ -41,12 +44,6 @@ int usb_host_init(void)
 
 #include "../../drivers/block/block.h"
 #include "../../drivers/sata/sata.h"
-
-/* Simple USB Mass Storage emulation backed by the SATA disk when a
- * real USB stack / enumeration is not implemented. This allows the
- * mass-storage "ms_*" block API to operate in QEMU for installer
- * testing without a full xHCI transfer layer.
- */
 
 static struct {
     uint32_t cbw_tag;

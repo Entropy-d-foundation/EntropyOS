@@ -1,26 +1,29 @@
-/* SPDX-License-Identifier: GPL-3.0 */
+/*
+    EntropyOS
+    Copyright (C) 2025  Gabriel Sîrbu
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*/
 #ifndef XHCI_H
 #define XHCI_H
 
 #include <stdint.h>
 
-/* Minimal xHCI detection/initialization interface (skeleton)
- * This is a stub/skeleton that detects an xHCI controller and
- * exposes a simple initialized flag. Full xHCI implementation is
- * large; this file is the starting point.
- */
-
 int xhci_init(void);
 int xhci_is_present(void);
-/* If present, return MMIO base address of xHCI controller (0 if unknown). */
 uint64_t xhci_get_mmio_base(void);
-
-/* Find the first xHCI device and return bus/slot/func and BAR0 MMIO base.
- * Returns 0 on success (found) and fills outputs, or -1 if not found.
- */
 int xhci_find_device(uint8_t *out_bus, uint8_t *out_slot, uint8_t *out_func, uint64_t *out_bar0);
-
-/* Extended helper API (probe + early bringup helper) */
 int xhci_init_full(void); /* perform extended probe, reset/start controller */
 void xhci_dump_capability(void);
 void xhci_dump_operational(void);
