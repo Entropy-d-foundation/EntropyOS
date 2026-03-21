@@ -3,15 +3,13 @@ contributor guide
 method used here is pull request (PR) inside of the official github repository
 of EntropyOS.
 there are 3 branches: main, testing, development.
-first 20 days is some kind of vacantion.
-after these 20 days, the next 15 days is the development time, write your code,
-test it on your hardware/emulators/VMs, and then pull request.
-the next 5 days, from development branch, the project goes to testing branch,
+first 20 days is development time.
+after these 20 days, the next 15 days everything is moved from "development" to "testing"
 this is where the EntropyOS creator tests it, and some of you can also test it
-and send PRs fixing them (NOT NEW FEATURES), after these 5 days, it goes
+and send PRs fixing them (NOT NEW FEATURES), after these 15 days, it goes
 from testing branch to main branch, and the cycle restarts.
 
-also one thing, if you create a new file, make sure on top of it there's a
+also one thing, if you create a new file, make sure on top of it there's the
 GPLv2 legal warning (dont copy from other websites, copy from other files from here
-because it states GPLv2, not GPLv2-or-later)
+because it states GPLv2, not GPLv2-or-later like the ones from other websites)
 if edited an existing file, add your (C) under the last existing (C)
