@@ -19,7 +19,7 @@
 CC = x86_64-w64-mingw32-gcc
 
 # ISO name
-ISO_OUT = EntropyOS-1-intel64.iso
+ISO_OUT = EntropyOS-alpha1-x86_64.iso
 # Path used by headless installer runner
 ISO_INSTALLER := $(ISO_OUT)
 
