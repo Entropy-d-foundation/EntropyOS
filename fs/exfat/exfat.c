@@ -1,9 +1,9 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
- * EntropyOS/fs/exfat/exfat.c
+ * GloamOS/fs/exfat/exfat.c
  *
  * Thin wrapper around the relan/exfat library to expose the subset of
- * functionality used by EntropyOS (formatting, simple file/directory
+ * functionality used by GloamOS (formatting, simple file/directory
  * manipulation).  The original library operates on file descriptors and
  * assumes a POSIX environment; the kernel/UEFI components of this project
  * instead read and write sectors through the block driver.  We therefore

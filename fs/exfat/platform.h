@@ -80,7 +80,7 @@
 #else
 /* unknown environment: assume little-endian generic and provide bswap
    helpers via builtins.  This keeps compilation moving even on
-   freestanding or exotic toolchains used by EntropyOS. */
+   freestanding or exotic toolchains used by GloamOS. */
 #include <stdint.h>
 #define exfat_bswap16(x) __builtin_bswap16(x)
 #define exfat_bswap32(x) __builtin_bswap32(x)
