@@ -1,5 +1,5 @@
 /*
-    EntropyOS
+    GloamOS
     Copyright (C) 2025  Gabriel Sîrbu
 
     This program is free software; you can redistribute it and/or modify
@@ -43,7 +43,7 @@ void kern_entry(void) {
 
     /* simple VGA text write at top-left via BIOS text mode buf in memory */
     volatile unsigned short *vga = (volatile unsigned short *)0xB8000;
-    const char *msg = "EntropyOS legacy mode kernel\0";
+    const char *msg = "GloamOS legacy mode kernel\0";
     for (int i = 0; msg[i]; ++i) {
         vga[i] = (unsigned short)(msg[i] | (0x07 << 8));
     }

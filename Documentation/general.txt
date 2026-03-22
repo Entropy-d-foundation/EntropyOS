@@ -1,10 +1,10 @@
-General documentation about EntropyOS
+General documentation about GloamOS
 =====================================
 arch:              x86_64 for now
 firmware needed:   UEFI for now, planned L BIOS just in case
 brief words about:
-         EntropyOS is supposed to be usable on Desktop and Servers
+         GloamOS is supposed to be usable on Desktop and Servers
 detailed words about:
-         Modern stuff, 64 bit, open source implementation of EntropyOS,
+         Modern stuff, 64 bit, open source implementation of GloamOS,
          i would like for it to gain some market share, but modernizing
          and maturing needed. see contribute.txt

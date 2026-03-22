@@ -279,7 +279,7 @@ void exfat_get_name(const struct exfat_node* node,
 		char buffer[EXFAT_UTF8_NAME_BUFFER_MAX]);
 uint16_t exfat_start_checksum(const struct exfat_entry_meta1* entry);
 
-/* helpers provided by the EntropyOS port */
+/* helpers provided by the GloamOS port */
 void exfat_set_partition_offset(uint64_t offset);
 
 /* simplified file information reported to upper layers */

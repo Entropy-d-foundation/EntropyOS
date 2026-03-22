@@ -1,4 +1,4 @@
-#   EntropyOS
+#   GloamOS
 #   Copyright (C) 2025  Gabriel Sîrbu
 
 #   This program is free software; you can redistribute it and/or modify
@@ -19,11 +19,11 @@
 CC = x86_64-w64-mingw32-gcc
 
 # ISO name
-ISO_OUT = EntropyOS-alpha1-x86_64.iso
+ISO_OUT = GloamOS-alpha1-x86_64.iso
 # Path used by headless installer runner
 ISO_INSTALLER := $(ISO_OUT)
 
-IMG = EntropyOS.img
+IMG = GloamOS.img
 IMGSIZE_MB = 256
 
 # Virtual SATA disk for testing
@@ -223,7 +223,7 @@ iso/EFI/BOOT/BOOTX64.EFI: generated/boot_blob.o boot/Uefi/bootloader.c fs/gpt/gp
 		-o $@ || (echo "Building bootloader failed"; exit 1)
 
 # Create a UEFI El Torito ISO from the `iso/` tree
-$(ISO_OUT): iso/EFI/BOOT/BOOTX64.EFI iso/EFI/BOOT/INSTALLER.EFI iso/startup.nsh iso/EntropyOS.img boot/LegacyBios/boot.img
+$(ISO_OUT): iso/EFI/BOOT/BOOTX64.EFI iso/EFI/BOOT/INSTALLER.EFI iso/startup.nsh iso/GloamOS.img boot/LegacyBios/boot.img
 	@echo "Creating UEFI-bootable ISO: $@"
 	@command -v xorriso >/dev/null 2>&1 || (echo "xorriso is required to create a UEFI El Torito ISO. Install xorriso and retry."; exit 1)
 	@MBR=; \
@@ -238,13 +238,13 @@ $(ISO_OUT): iso/EFI/BOOT/BOOTX64.EFI iso/EFI/BOOT/INSTALLER.EFI iso/startup.nsh 
 	mkdir -p iso/boot/LegacyBios; cp -f boot/LegacyBios/boot.img iso/boot/LegacyBios/boot.img; \
 	xorriso -as mkisofs \
 		-o $@ \
-		-V "EntropyOS-1-intel64" \
+		-V "GloamOS-1-intel64" \
 		-c boot.catalog \
 			-eltorito-boot boot/LegacyBios/boot.img -no-emul-boot -boot-load-size 4 -boot-info-table \
 		-eltorito-alt-boot \
-			-e EntropyOS.img -no-emul-boot \
+			-e GloamOS.img -no-emul-boot \
 			-isohybrid-gpt-basdat $$MBRARG \
-			-append_partition 2 0xef EntropyOS.img \
+			-append_partition 2 0xef GloamOS.img \
 		-allow-lowercase -allow-multidot \
 		iso
 
@@ -313,9 +313,9 @@ $(IMG): iso/EFI/BOOT/BOOTX64.EFI
 	mmd -i $@ ::/EFI/BOOT || true
 	mcopy -i $@ -s iso/* ::
 
-iso/EntropyOS.img: $(IMG)
+iso/GloamOS.img: $(IMG)
 	@mkdir -p iso
-	cp $(IMG) iso/EntropyOS.img
+	cp $(IMG) iso/GloamOS.img
 
 # Create virtual SATA disk
 $(SATA_DISK):
@@ -516,7 +516,7 @@ burn:
 	echo "You selected /dev/$$DRIVE"; \
 	echo "Proceeding in 5 seconds... press Ctrl-C to abort"; \
 	sleep 5; \
-	echo "Flashing EntropyOS to /dev/$$DRIVE"; \
+	echo "Flashing GloamOS to /dev/$$DRIVE"; \
 	sudo dd if=$(ISO_OUT) of=/dev/$$DRIVE bs=4M status=progress conv=fsync; \
 	sync; \
 	echo "Done."

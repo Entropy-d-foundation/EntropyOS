@@ -1,5 +1,5 @@
 /*
-    EntropyOS
+    GloamOS
     Copyright (C) 2025  Gabriel Sîrbu
 
     This program is free software; you can redistribute it and/or modify
